@@ -1,0 +1,42 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Acesse o menu">
+  <mat-icon matTooltip="Menu do Sistema">menu</mat-icon>
+</button>
+
+<div class="menu">
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="navegarParaRota('dashboard')">
+      <mat-icon fontIcon="home"></mat-icon>
+      <span>Dashboard</span>
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="relatorios">
+      <mat-icon fontIcon="request_page"></mat-icon>
+      <span>Relatórios</span>
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="lancamentos">
+      <mat-icon fontIcon="payments"></mat-icon>
+      <span>Lançamentos</span>
+    </button>
+  </mat-menu>
+
+  <mat-menu #relatorios="matMenu">
+    <button mat-menu-item (click)="navegarParaRota('/relatorios/receitas')">
+      <mat-icon fontIcon="currency_exchange"></mat-icon>
+      <span>Relatório de Receitas</span>
+    </button>
+    <button mat-menu-item (click)="navegarParaRota('/relatorios/despesas')">
+      <mat-icon fontIcon="shopping_cart"></mat-icon>
+      <span>Relatório de Despesas</span>
+    </button>
+  </mat-menu>
+
+  <mat-menu #lancamentos="matMenu">
+    <button mat-menu-item (click)="navegarParaRota('lancamentos/receitas')">
+      <mat-icon fontIcon="paid"></mat-icon>
+      <span>Lançamento de Receitas</span>
+    </button>
+    <button mat-menu-item (click)="navegarParaRota('lancamentos/despesas')">
+      <mat-icon fontIcon="shopping_bag"></mat-icon>
+      <span>Lançamento de Despesas</span>
+    </button>
+  </mat-menu>
+</div>

@@ -1,0 +1,16 @@
+.container-bg {
+  background-image: url('../../../assets/image/financas.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 80%;
+
+  width: 100vw;
+  height: 100vh;
+
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+mat-card {
+  width: 400px;
+}

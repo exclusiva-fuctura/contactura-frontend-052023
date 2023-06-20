@@ -1,1 +1,42 @@
-<p>cadastro works!</p>
+<div class="container-bg container-bg d-flex auto-center">
+  <mat-card>
+    <mat-card-header>
+      <div class="w-100 d-flex fd-column auto-center">
+        <mat-icon aria-hidden="false">person_add</mat-icon>
+        <h2>Formulário de Cadastro</h2>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form novalidate class="d-flex fd-column">
+        <mat-form-field class="w-100">
+          <mat-label>Nome completo</mat-label>
+          <input matInput placeholder="Nome completo" >
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label>E-mail</mat-label>
+          <input matInput placeholder="meuemail@email.com" >
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label>Telefone para contato</mat-label>
+          <input matInput placeholder="(81) 9xxxx-xxxx">
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label>Senha</mat-label>
+          <input matInput type="password">
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label>Confirmação da Senha</mat-label>
+          <input matInput type="password">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <div class="w-100 d-flex gap-8 fd-row-reverse">
+        <button mat-raised-button color="primary" class="w-100">Cadastrar</button>
+        <button mat-raised-button color="secundary" class="w-100" (click)="navegarParaRota('/login')">Sair</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

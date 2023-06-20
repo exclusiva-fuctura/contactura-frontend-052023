@@ -5,7 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { AutenticadorGuard } from './guards/autenticador.guard';
+import { AutenticadorGuard } from './shared/security/autenticador.guard';
 
 const routes: Routes = [
 

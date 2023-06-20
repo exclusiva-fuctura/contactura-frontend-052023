@@ -1,0 +1,15 @@
+/* Preferred icon size 24, 36, 48*/
+.large-size-icon {
+  font-size: 48px;
+  width: 48px !important;
+  height: 48px !important;
+  line-height: 48px;
+}
+
+.div-table {
+  padding: 0 20px;
+}
+
+.no-data {
+  padding: 10px 0 15px 15px;
+}

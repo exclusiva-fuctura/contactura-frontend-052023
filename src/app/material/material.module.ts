@@ -16,6 +16,9 @@ import { MatIconModule, MatIconRegistry } from '@angular/material/icon'
 import { DefaultMatCalendarRangeStrategy, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
+import { MatCardModule } from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 export const material = [
   MatIconModule,
   MatMenuModule,
@@ -31,6 +34,8 @@ export const material = [
   MatNativeDateModule,
   MatMomentDateModule,
   MatSlideToggleModule,
+  MatCardModule,
+  MatToolbarModule,
 ];
 
 export const DATE_FORMATS = {

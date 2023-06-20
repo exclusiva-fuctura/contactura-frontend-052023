@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
-import { ReceitasComponent } from './components/receitas/receitas.component';
-import { DespesasComponent } from './components/despesas/despesas.component';
+import { ReceitasComponent } from './pages/receitas/receitas.component';
+import { DespesasComponent } from './pages/despesas/despesas.component';
 
 @NgModule({
   declarations: [

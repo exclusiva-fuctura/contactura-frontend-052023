@@ -8,20 +8,27 @@
     </mat-card-header>
 
     <mat-card-content>
-      <form novalidate class="d-flex fd-column">
+      <form [formGroup]="loginForm" novalidate class="d-flex fd-column">
         <mat-form-field class="w-100">
           <mat-label>E-mail</mat-label>
-          <input matInput placeholder="meuemail@email.com">
+          <input matInput placeholder="meuemail@email.com" formControlName="username">
+          <mat-error *ngIf="hasErrorInUsername()">
+            {{ usernameErrorMessage }}
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="w-100" appearance="fill">
           <mat-label>Senha</mat-label>
-          <input matInput type="password">
+          <input matInput type="password" formControlName="password">
         </mat-form-field>
 
-        <button mat-raised-button color="primary" (click)="navegarParaRota('dashboard')">Entrar</button>
-        <button mat-raised-button (click)="navegarParaRota('cadastro')">Cadastrar</button>
-        <button mat-button color="warn">Esqueci minha senha!</button>
+        <button mat-raised-button color="primary" type="button"
+          [disabled]="isFormularioValido()"
+          (click)="executarLogin()">Entrar</button>
+        <button mat-raised-button type="button"
+          (click)="navegarParaRota('cadastro')">Cadastrar</button>
+        <button mat-button color="warn" type="button"
+          (click)="validarForm()">Esqueci minha senha!</button>
       </form>
     </mat-card-content>
   </mat-card>

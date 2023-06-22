@@ -29,7 +29,6 @@ export class LoginComponent {
 
     const passwordValidators: Array<ValidatorFn> = [
       Validators.required,
-      Validators.email,
       Validators.minLength(5)
     ];
 

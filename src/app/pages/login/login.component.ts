@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutenticadorService, Login } from 'src/app/shared/services/autenticador.service';
 
@@ -20,16 +20,34 @@ export class LoginComponent {
     private fb: FormBuilder,
     private autenticadorService: AutenticadorService,
   ) {
+
+    const usernameValidators: Array<ValidatorFn> = [
+      Validators.required,
+      Validators.email,
+      Validators.minLength(5)
+    ];
+
+    const passwordValidators: Array<ValidatorFn> = [
+      Validators.required,
+      Validators.email,
+      Validators.minLength(5)
+    ];
+
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
-      password: ['', [Validators.required]]
+      username: ['', usernameValidators],
+      password: ['', passwordValidators]
     });
   }
 
-  public validarForm(): void {
-    console.log(JSON.stringify(
-      this.loginForm.value
-    ))
+  public onSubmit(): void {
+    const autenticadores: Login = {
+      username: this.loginForm.get('username')?.value,
+      password: this.loginForm.get('password')?.value,
+    }
+
+    console.log(autenticadores);
+
+    this.autenticadorService.login(autenticadores)
   }
 
   public navegarParaRota(rota: string): void {
@@ -53,14 +71,5 @@ export class LoginComponent {
     }
 
     return false
-  }
-
-  public executarLogin(): void {
-    const autenticadores: Login = {
-      username: this.loginForm.get('username')?.value,
-      password: this.loginForm.get('password')?.value,
-    }
-
-    this.autenticadorService.login(autenticadores)
   }
 }

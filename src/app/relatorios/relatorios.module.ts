@@ -5,6 +5,8 @@ import { RelatoriosRoutingModule } from './relatorios-routing.module';
 
 import { DespesasComponent } from './pages/despesas/despesas.component';
 import { ReceitasComponent } from './pages/receitas/receitas.component';
+import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { ReceitasComponent } from './pages/receitas/receitas.component';
   ],
   imports: [
     CommonModule,
-    RelatoriosRoutingModule
+    RelatoriosRoutingModule,
+    SharedModule,
+    MaterialModule
   ]
 })
 export class RelatoriosModule { }

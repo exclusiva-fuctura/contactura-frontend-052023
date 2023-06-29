@@ -30,8 +30,8 @@ export class LoginComponent {
 
   public onSubmit(): void {
     const autenticadores: Login = {
-      username: this.loginForm.get('username')?.value,
-      password: this.loginForm.get('password')?.value,
+      email: this.loginForm.get('username')?.value,
+      senha: this.loginForm.get('password')?.value,
     }
 
     console.log(autenticadores);

@@ -1,29 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenState } from '../security/token.state';
+import { DaoService } from '../dao/dao.service';
+import { HttpStatusCode } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
-export interface Login {username: string, password: string}
+export interface Login {email: string, senha: string}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticadorService {
 
+  constructor(
+    private router: Router,
+    private tokenState: TokenState,
+    private daoService: DaoService,
+  ) {}
 
-  constructor(private router: Router, private tokenState: TokenState) {}
-
-  public login({ username, password }: Login): void {
-    // request.backend(username, password);
-    const response = "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgZG8gQ29udGFjdHVyYSBkYSBGdWN0dXJhIiwic3ViIjoiZTdjNTU1YmUtMDQ3Mi00Yjg2LTg1MDctY2QzMGY2NDhiNTY3IiwiaWF0IjoxNjg3OTEyMDkwLCJleHAiOjE2ODc5OTg0OTB9.ACbEh_e-odf_zTPI6zlTm_5h1Mv29zFtsllSypTCp8Q";
-
-    console.log(username, password)
-
-    if (!response) {
-      console.warn('Não foi possível se autenticar')
-      return
+  public login({ email, senha }: Login): void {
+    const payload: Login = {
+      email,
+      senha
     }
 
-    this.tokenState.setToken(response);
-    this.router.navigate(['dashboard']);
+    this.daoService.post<Login>(
+      "/api/autenticador",
+      payload,
+      DaoService.MEDIA_TYPE_APP_JSON
+    ).subscribe({
+      next: (response) => {
+        if (response.status === HttpStatusCode.Created) {
+          this.tokenState.setToken(response.headers.get('authorization'));
+          this.router.navigate(['/dashboard']);
+        }
+      },
+      error: (err) => {
+        Swal.fire('ALERTA!', err.error.mensagem, 'warning');
+      }
+    });
   }
 }

@@ -69,7 +69,8 @@
               "browserTarget": "contactura:build:production"
             },
             "development": {
-              "browserTarget": "contactura:build:development"
+              "browserTarget": "contactura:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

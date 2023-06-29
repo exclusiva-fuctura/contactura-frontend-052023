@@ -11,6 +11,8 @@ import { AutenticadorGuard } from './security/autenticador.guard';
 import { MenuComponent } from './components/menu/menu.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { DinheiroDirective } from './directives/dinheiro.directive';
+import { MaiusculoDirective } from './directives/maiusculo.directive';
 
 const components = [
   MenuComponent,
@@ -18,12 +20,19 @@ const components = [
   LoadingComponent,
 ];
 
+const directives = [
+  DinheiroDirective,
+  MaiusculoDirective
+];
+
 @NgModule({
   declarations: [
     components,
+    directives
   ],
   exports: [
     components,
+    directives
   ],
   imports: [
     CommonModule,

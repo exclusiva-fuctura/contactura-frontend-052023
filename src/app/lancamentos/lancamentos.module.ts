@@ -5,6 +5,9 @@ import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 import { ReceitasComponent } from './pages/receitas/receitas.component';
 import { DespesasComponent } from './pages/despesas/despesas.component';
+import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +16,10 @@ import { DespesasComponent } from './pages/despesas/despesas.component';
   ],
   imports: [
     CommonModule,
-    LancamentosRoutingModule
+    LancamentosRoutingModule,
+    ReactiveFormsModule,
+    SharedModule,
+    MaterialModule
   ]
 })
 export class LancamentosModule { }

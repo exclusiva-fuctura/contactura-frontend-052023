@@ -10,13 +10,15 @@ import { ReceitasService } from 'src/app/shared/services/receitas.service';
 })
 export class DashboardComponent {
 
-  public listaDeReceitas: Receita[] = [];
+  public dataSourceDespesas: any[] = [];
+  public dataSourceReceitas: Receita[] = [];
+  public displayedColumns = ['data','valor','tipo','fixo','descricao','acoes'];
 
   constructor(
     private receitasService: ReceitasService,
     private lancamentosService: LancamentosService
   ) {
-    this.listaDeReceitas = receitasService.getReceitas();
+    this.dataSourceReceitas = receitasService.getReceitas();
 
     this.lancamentosService.getLancamentos();
   }
@@ -30,6 +32,22 @@ export class DashboardComponent {
       data: new Date(),
       valor: 250
     })
+  }
+
+  public onDeleteReceita(item: unknown): void {
+    //
+  }
+
+  public onEditReceita(item: unknown): void {
+    //
+  }
+
+  public onDeleteDespesa(item: unknown): void {
+    //
+  }
+
+  public onEditDespesa(item: unknown): void {
+    //
   }
 
 }

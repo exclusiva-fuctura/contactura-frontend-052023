@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutenticadorService, Login } from 'src/app/shared/services/autenticador.service';
+import { passwordValidators, usernameValidators } from './login.validators';
 
 @Component({
   selector: 'app-login',
@@ -20,17 +21,6 @@ export class LoginComponent {
     private fb: FormBuilder,
     private autenticadorService: AutenticadorService,
   ) {
-
-    const usernameValidators: Array<ValidatorFn> = [
-      Validators.required,
-      Validators.email,
-      Validators.minLength(5)
-    ];
-
-    const passwordValidators: Array<ValidatorFn> = [
-      Validators.required,
-      Validators.minLength(5)
-    ];
 
     this.loginForm = this.fb.group({
       username: ['', usernameValidators],
@@ -66,6 +56,10 @@ export class LoginComponent {
     }
     if (usernameField && usernameField.hasError('email')) {
       this.usernameErrorMessage = "Minha mensagem personalizada de email"
+      return true
+    }
+    if (usernameField && usernameField.hasError('minlength')) {
+      this.usernameErrorMessage = "Minha mensagem personalizada de min length"
       return true
     }
 

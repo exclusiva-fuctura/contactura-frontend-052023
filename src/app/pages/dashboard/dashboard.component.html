@@ -14,4 +14,9 @@
 
 <div class="container">
   <p>Seja bem vindo ao dashboard!</p>
+
+  <p>{{ listaDeReceitas | json }}</p>
+
+  <button mat-raised-button color="primary" type="button"
+    (click)="adicionarReceita()">Adicionar Receita</button>
 </div>

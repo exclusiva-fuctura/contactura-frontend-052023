@@ -1,1 +1,95 @@
-<p>relatório de receitas works!</p>
+<nav>
+  <mat-toolbar color="primary">
+    <div class="w-100 d-flex space-between">
+      <div class="d-flex align-center">
+        <app-menu></app-menu>
+
+        <span>Relatório de Receitas</span>
+      </div>
+
+      <app-logout></app-logout>
+    </div>
+  </mat-toolbar>
+</nav>
+
+<div class="container">
+  <form novalidate class="d-flex end gap-8 align-center">
+    <mat-form-field appearance="fill">
+      <mat-label>Data da Receita</mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-icon-button color="primary" type="submit">
+      <mat-icon aria-hidden="false" matTooltip="Filtrar">search</mat-icon>
+    </button>
+  </form>
+
+  <div class="mat-elevation-z8 div-table">
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Data Column -->
+      <ng-container matColumnDef="data">
+        <th mat-header-cell *matHeaderCellDef>Data </th>
+        <td mat-cell *matCellDef="let element"> {{element.data | date:'dd/MM/yyyy'}}</td>
+        <td mat-footer-cell *matFooterCellDef> <strong>Total</strong> </td>
+      </ng-container>
+
+      <!-- Valor Column -->
+      <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef>Valor </th>
+        <td mat-cell *matCellDef="let element">{{element.valor | currency:'BRL':'symbol':'0.2-2'}}</td>
+        <td mat-footer-cell *matFooterCellDef> <strong>{{valorTotal | currency:'BRL':'symbol':'0.2-2'}}</strong> </td>
+
+      </ng-container>
+
+      <!-- Tipo Column -->
+      <ng-container matColumnDef="tipo">
+        <th mat-header-cell *matHeaderCellDef>Tipo </th>
+        <td mat-cell *matCellDef="let element">{{element.tipo.toUpperCase()}}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+
+      </ng-container>
+
+      <!-- Fixo Column -->
+      <ng-container matColumnDef="fixo">
+        <th mat-header-cell *matHeaderCellDef>Fixo </th>
+        <td mat-cell *matCellDef="let element">{{element.ehFixo ? 'SIM' : 'NÃO'}}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <!-- Descricao Column -->
+      <ng-container matColumnDef="descricao">
+        <th mat-header-cell *matHeaderCellDef>Descrição </th>
+        <td mat-cell *matCellDef="let element">{{element.descricao.toUpperCase()}}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="d-flex gap-8">
+            <button mat-mini-fab color="primary" aria-label="Remover despesa">
+              <mat-icon matTooltip="Remover">delete</mat-icon>
+            </button>
+
+            <button mat-mini-fab color="primary" aria-label="Editar despesa">
+              <mat-icon matTooltip="Editar">edit</mat-icon>
+            </button>
+          </div>
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell no-data" colspan="6">Não existem registros</td>
+      </tr>
+    </table>
+  </div>
+</div>

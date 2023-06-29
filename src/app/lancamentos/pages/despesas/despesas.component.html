@@ -1,1 +1,58 @@
-<p>lançamento de despesas works!</p>
+<nav>
+  <mat-toolbar color="primary">
+    <div class="w-100 d-flex space-between">
+      <div class="d-flex align-center">
+        <app-menu></app-menu>
+
+        <span>Lançamento de Despesas</span>
+      </div>
+
+      <app-logout></app-logout>
+    </div>
+  </mat-toolbar>
+</nav>
+
+<div class="container">
+  <form novalidate
+    [formGroup]="lancamentoDespesaForm" (ngSubmit)="onSubmit()">
+    <div class="d-flex gap-8">
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Descrição</mat-label>
+        <input matInput formControlName="descricao" maiusculo>
+      </mat-form-field>
+    </div>
+
+    <div class="d-flex gap-8">
+      <mat-form-field appearance="fill" class="w-250">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="tipo">
+            <mat-option *ngFor="let tipo of tipos" [value]="tipo">
+            {{tipo}}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-250">
+        <mat-label>Data da Receita</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="data">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-valor">
+        <mat-label>Valor</mat-label>
+        <input matInput formControlName="valor">
+      </mat-form-field>
+
+      <div class="pad-16">
+        <mat-slide-toggle color="primary" formControlName="ehFixo">Receita fixa?</mat-slide-toggle>
+      </div>
+    </div>
+
+    <div class="d-flex end gap-8">
+      <button mat-raised-button (click)="onReset()">Limpar</button>
+      <button mat-raised-button color="primary" type="submit"
+        [disabled]="isFormularioInvalido()">{{buttonLabel}}</button>
+    </div>
+  </form>
+</div>

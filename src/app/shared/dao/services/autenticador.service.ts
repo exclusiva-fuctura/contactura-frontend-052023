@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { TokenState } from '../security/token.state';
-import { DaoService } from '../dao/dao.service';
 import { HttpStatusCode } from '@angular/common/http';
 import Swal from 'sweetalert2';
-
-export interface Login {email: string, senha: string}
+import { TokenState } from '../../security/token.state';
+import { DaoService } from '../dao.service';
+import { Login } from '../../models/login';
 
 @Injectable({
   providedIn: 'root'

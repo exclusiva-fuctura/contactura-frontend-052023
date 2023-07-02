@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LancamentosService } from 'src/app/shared/dao/services/lancamentos.service';
 import { Receita } from 'src/app/shared/models/receita';
 import { ReceitasService } from 'src/app/shared/services/receitas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,18 +21,14 @@ export class DashboardComponent {
   ) {
     this.dataSourceReceitas = receitasService.getReceitas();
 
-    this.lancamentosService.getLancamentos();
-  }
-
-  public adicionarReceita(): void {
-    this.receitasService.setReceita({
-      id: 3,
-      tipo: "salario",
-      descricao: "auxilio computador",
-      mensagem: "mais um aditivo",
-      data: new Date(),
-      valor: 250
-    })
+    this.lancamentosService.getLancamentos().subscribe({
+      next: () => {
+        this.dataSourceReceitas = this.receitasService.getReceitas();
+      },
+      error: () => {
+        Swal.fire('ALERTA!', 'Ocorreu um erro ao buscar os dados de lançamentos', 'warning');
+      }
+    });
   }
 
   public onDeleteReceita(item: unknown): void {

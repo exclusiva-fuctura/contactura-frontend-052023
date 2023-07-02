@@ -13,18 +13,23 @@
 </nav>
 
 <div class="container">
-  <form novalidate class="d-flex end gap-8 align-center">
+  <form novalidate class="d-flex end gap-8 align-center"
+    [formGroup]="pesquisarReceitasForm" (ngSubmit)="onSubmit()">
+
+    {{ pesquisarReceitasForm.value | json }}
+
     <mat-form-field appearance="fill">
       <mat-label>Data da Receita</mat-label>
-      <input matInput [matDatepicker]="picker">
+      <input matInput [matDatepicker]="picker" formControlName="dataPesquisa">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <button mat-icon-button color="primary" type="submit">
+    <button mat-icon-button color="primary" type="submit" [disabled]="isInvalidoForm()">
       <mat-icon aria-hidden="false" matTooltip="Filtrar">search</mat-icon>
     </button>
   </form>
+
 
   <div class="mat-elevation-z8 div-table">
     <table mat-table [dataSource]="dataSource">

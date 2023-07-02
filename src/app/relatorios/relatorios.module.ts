@@ -7,6 +7,7 @@ import { DespesasComponent } from './pages/despesas/despesas.component';
 import { ReceitasComponent } from './pages/receitas/receitas.component';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MaterialModule } from '../material/material.module';
     CommonModule,
     RelatoriosRoutingModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class RelatoriosModule { }

@@ -16,7 +16,7 @@ export class ReceitasComponent {
     this.lancamentoReceitaForm = this.formBuilder.group({
       tipo: ['', Validators.required],
       ehFixo: false,
-      data: moment().format(),
+      data: moment(),
       descricao: ['', Validators.required],
       valor: ['', Validators.required]
 
@@ -34,7 +34,7 @@ export class ReceitasComponent {
   public onReset(): void {
     this.lancamentoReceitaForm.reset();
     this.lancamentoReceitaForm.patchValue({
-      data: moment().format(),
+      data: moment(),
       ehFixo: false
     });
   }

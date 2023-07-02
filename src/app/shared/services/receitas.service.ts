@@ -1,23 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Receita } from '../models/receita';
-import { Observable, Subject, from } from 'rxjs';
-import { DaoService } from '../dao/dao.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReceitasService {
 
-  private listaDeReceitas: Array<Receita> = [
-    {
-      id: 1,
-      tipo: "salario",
-      descricao: "Contracheque mês",
-      mensagem: "Opaaa salario caiu",
-      data: new Date(),
-      valor: 20000.00
-    }
-  ];
+  private listaDeReceitas: Array<Receita> = [];
 
   public getReceitas(): Array<Receita> {
     return this.listaDeReceitas;
@@ -36,6 +25,10 @@ export class ReceitasService {
   }
 
   public set receitas(receitas: Receita[]) {
+    this.listaDeReceitas = receitas
+  }
+
+  public setReceitas(receitas: Receita[]): void {
     this.listaDeReceitas = receitas
   }
 }

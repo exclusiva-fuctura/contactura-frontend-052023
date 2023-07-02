@@ -3,6 +3,7 @@ export interface Receita {
   tipo: string
   descricao: string
   mensagem: string
+  ehFixo: boolean
   data: Date
   valor: number
 }
